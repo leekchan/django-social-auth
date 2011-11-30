@@ -19,18 +19,13 @@ def social_auth_user(backend, uid, user=None, *args, **kwargs):
         social_user = None
 
     if social_user:
-        if user and social_user.user != user:
-            raise ValueError('Account already in use.', social_user)
-        elif not user:
+        if not user:
             user = social_user.user
     return {'social_user': social_user, 'user': user}
 
 
 def associate_user(backend, user, uid, social_user=None, *args, **kwargs):
     """Associate user social account with user instance."""
-    if social_user:
-        return None
-
     try:
         social = UserSocialAuth.objects.create(user=user, uid=uid,
                                                provider=backend.name)

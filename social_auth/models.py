@@ -29,10 +29,6 @@ class UserSocialAuth(models.Model):
     uid = models.CharField(max_length=255)
     extra_data = JSONField(blank=True)
 
-    class Meta:
-        """Meta data"""
-        unique_together = ('provider', 'uid')
-
     def __unicode__(self):
         """Return associated user unicode representation"""
         return unicode(self.user)
