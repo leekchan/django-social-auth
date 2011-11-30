@@ -76,10 +76,11 @@ def dsa_view(redirect_name=None):
         return wrapper
     return dec
 
-
+from django.contrib.auth import logout
 @dsa_view(COMPLETE_URL_NAME)
 def auth(request, backend):
     """Start authentication process"""
+    logout(request)
     return auth_process(request, backend)
 
 
